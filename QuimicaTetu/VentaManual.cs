@@ -345,16 +345,16 @@ namespace QuimicaTetu
                     {
                         // jabon x3 & x5
                         case ("Oferta Jabon(A)X3"):
-                            datosbase.Nombre[i] = "Jabón Líquido(A)";
+                            datosbase.Nombre[i] = "Jabon Liquido(A)";
                             break;
                         case ("Oferta Jabon(A)X5"):
-                            datosbase.Nombre[i] = "Jabón Líquido(A)";
+                            datosbase.Nombre[i] = "Jabon Liquido(A)";
                             break;
                         case ("Oferta Jabon(B)X3"):
-                            datosbase.Nombre[i] = "Jabón Líquido(B)";
+                            datosbase.Nombre[i] = "Jabon Liquido(B)";
                             break;
                         case ("Oferta Jabon(B)X5"):
-                            datosbase.Nombre[i] = "Jabón Líquido(B)";
+                            datosbase.Nombre[i] = "Jabon Liquido(B)";
                             break;
                         // suavizante x3 & x5 
                         case ("Oferta Suavizante(C)X3"):
@@ -371,10 +371,10 @@ namespace QuimicaTetu
                             break;
                         // Detergente común x3 & x5
                         case ("Oferta Detergente X3"):
-                            datosbase.Nombre[i] = "Detergente Común";
+                            datosbase.Nombre[i] = "Detergente Comun";
                             break;
                         case ("Oferta Detergente X5"):
-                            datosbase.Nombre[i] = "Detergente Común";
+                            datosbase.Nombre[i] = "Detergente Comun";
                             break;
                         // Detergente mag x3 & x5
                         case ("Oferta Detergente Mag X3"):
