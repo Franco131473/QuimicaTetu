@@ -551,6 +551,25 @@ namespace QuimicaTetu
          return JsonConvert.DeserializeObject<List<ArchivoLibreta>>(json) ?? new List<ArchivoLibreta>();
       }
         return new List<ArchivoLibreta>();
-      }  
+      }
+        public void CargarDatosLibreta(string ruta)
+{
+    try
+    {
+        string json = File.ReadAllText(ruta);
+        listaLibreta = JsonConvert.DeserializeObject<List<ArchivoLibreta>>(json);
+
+        // Mostrar nombres de los productos cargados para depuración  
+        foreach (var producto in listaLibreta)
+        {
+            // MessageBox.Show($"Producto cargado: {producto.Nombre}");
+        }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Error al cargar los datos: {ex.Message}");
+    }
+
+}
     }
 }
