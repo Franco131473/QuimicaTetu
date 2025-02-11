@@ -571,6 +571,19 @@ namespace QuimicaTetu
             {
                 textBox4.Focus(); e.SuppressKeyPress = true; // Previene el comportamiento predeterminado del Enter }
             }
+            if (e.KeyCode == Keys.F11)
+{
+    DialogResult result = MessageBox.Show("Ir a la ventana Libreta?", "Confirmación", MessageBoxButtons.YesNo);
+
+    // Verifica la respuesta del usuario  
+    if (result == DialogResult.Yes)
+    {
+        _Libreta lb = new _Libreta(datosbase);
+        lb.Show();
+        lb.banderaL = true;
+        // Previene el comportamiento predeterminado del Enter }
+    }
+}
         }
         private void VentaManual_Load(object sender, EventArgs e)
         {
