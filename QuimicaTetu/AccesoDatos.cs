@@ -16,6 +16,7 @@ namespace QuimicaTetu
         public string ruta2 = @"C:\Users\Netbook\Desktop\ArchivosQuimicaVentas.json";
         public string ruta3 = @"C:\Users\Netbook\Desktop\ArchivosQuimicaVentasTotal.json";
         public string ruta4 = @"C:\Users\Netbook\Desktop\PrecioQuímicos.json";
+        public string ruta5 = @"C:\Users\Netbook\Desktop\Libreta.json";
         // Restar porducto del Stock Luego de la Venta
         public List<string> Nombre = new List<string>();
         public List<string> Tipo = new List<String>();
@@ -483,5 +484,73 @@ namespace QuimicaTetu
             }
             return new List<ArchivosVentas>();
         }
+        public void GuardarDatosLibreta(string ruta3, List<ArchivoLibreta> listaLibreta)
+       {
+          try
+          {
+            string json = JsonConvert.SerializeObject(listaLibreta, Formatting.Indented);
+            File.WriteAllText(ruta5, json);
+            MessageBox.Show("Datos guardados exitosamente.");
+          }
+          catch (Exception ex)
+          {
+            MessageBox.Show($"Error al guardar el archivo a lista de ventas: {ex.Message}");
+          }
+       }
+         public void GuardarListaLibreta( string cliente)
+        {
+
+     // Paso 1: Cargar los datos existentes desde el archivo JSON  
+       List<ArchivoLibreta> listaVentasExistentes = new List<ArchivoLibreta>();
+       if (File.Exists(ruta5))
+        {
+         try
+         {
+             string jsonExistente = File.ReadAllText(ruta5);
+             listaVentasExistentes = JsonConvert.DeserializeObject<List<ArchivoLibreta>>(jsonExistente) ?? new List<ArchivoLibreta>();
+         }
+         catch (Exception ex)
+         {
+             MessageBox.Show($"Error al cargar el archivo existente: {ex.Message}");
+         }
+     }
+
+     // Paso 2: Agregar nuevos registros  
+     for (int i = 0; i < Nombre.Count; i++)
+     {
+         try
+         {
+             var registro = new ArchivoLibreta
+             {
+                 Cliente = cliente,
+                 NombreProducto = Nombre[i],
+                 Tipo = Tipo[i],
+                 Cantidad = int.Parse(CantidadList[i]),
+                 PrecioVenta = int.Parse(PV[i]),
+                 PrecioCompra = int.Parse(PC[i]),
+                 Ganancia = int.Parse(Ganancia[i]),
+                 Fecha = Fecha[i].ToString(),
+                 Hora = Hora[i].ToString()
+             };
+             listaVentasExistentes.Add(registro); // Agregar a la lista existente  
+         }
+         catch (Exception ex)
+         {
+             MessageBox.Show($"Error al crear el registro: {ex.Message}");
+         }
+        }
+         // Paso 3: Guardar todos los datos de vuelta en el archivo JSON  
+        GuardarDatosLibreta(ruta5, listaVentasExistentes);
+        // MessageBox.Show($"{Nombre[0]}, {Tipo[0]}, {CantidadList[0]}, {PV[0]}, {PC[0]}, {Ganancia[0]}, {FechaYHora[0]}");
+        }
+    public List<ArchivoLibreta> CargarArchivo4(string ruta)
+      {
+     if(File.Exists(ruta))
+      {
+         var json = File.ReadAllText(ruta);
+         return JsonConvert.DeserializeObject<List<ArchivoLibreta>>(json) ?? new List<ArchivoLibreta>();
+      }
+        return new List<ArchivoLibreta>();
+      }  
     }
 }
